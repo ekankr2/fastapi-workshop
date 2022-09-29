@@ -1,10 +1,9 @@
-from datetime import timedelta
-
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
+
 from .. import schemas, models, database
 from ..hashing import Hash
-from ..token import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token
+from ..token import create_access_token
 
 router = APIRouter(
     tags=['Authentication']
