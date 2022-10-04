@@ -23,3 +23,14 @@ class User(Base):
     password = Column(String)
 
     blogs = relationship('Blog', back_populates="creator")
+    images = relationship('Image', back_populates="creator")
+
+
+class Image(Base):
+    __tablename__ = 'image'
+
+    id = Column(Integer, primary_key=True, index=True)
+    url = Column(String)
+    user_id = Column(Integer, ForeignKey('users.id'))
+
+    user = relationship('User', back_populates="images")
