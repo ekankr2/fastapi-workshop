@@ -3,10 +3,11 @@ from sqlalchemy.orm import Session
 from ..hashing import Hash
 
 from .. import schemas, models
+from ..models.user import User
 
 
 def create(request: schemas.User, db: Session):
-    new_user = models.User(name=request.name, email=request.email, password=Hash.bcrypt(request.password))
+    new_user = User(name=request.name, email=request.email, password=Hash.bcrypt(request.password))
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
